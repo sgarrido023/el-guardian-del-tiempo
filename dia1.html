@@ -2,8 +2,6 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Día 1 - Misión Completa</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
   <style>
@@ -121,27 +119,24 @@
       grid-gap: 10px;
       justify-content: center;
     }
- .carta {
-  width: 80px;
-  height: 80px;
-  background-color: #1A2B3D;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.8rem;
-  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe UI Symbol', 'EmojiOne Color', sans-serif;
-  cursor: pointer;
-  user-select: none;
-  box-shadow: 0 0 8px #00B4D8aa;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  color: transparent;
-  line-height: 1; /* ✅ importante para que el emoji se centre */
-}
-
+    .carta {
+      width: 80px;
+      height: 80px;
+      background-color: #1A2B3D;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.8rem;
+      cursor: pointer;
+      color: transparent;
+      user-select: none;
+      box-shadow: 0 0 8px #00B4D8aa;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
     .carta.volteada {
       background-color: #00B4D8;
-      color: #ffffff; /* ✅ Blanco para que el emoji se vea bien */
+      color: #0B1D2A;
       cursor: default;
       box-shadow: 0 0 12px #00B4D8;
     }
@@ -296,7 +291,7 @@
         const carta = document.createElement('div');
         carta.classList.add('carta');
         carta.dataset.valor = valor;
-        carta.textContent = '';
+        carta.textContent = '?';
         carta.addEventListener('click', manejarClick);
         tablero.appendChild(carta);
       });
@@ -340,12 +335,12 @@
     function mostrarCarta(carta) {
       carta.textContent = carta.dataset.valor;
       carta.classList.add('volteada');
-      //carta.style.color = '#003300';
+      carta.style.color = '#003300';
       carta.style.cursor = 'default';
     }
 
     function ocultarCarta(carta) {
-      carta.textContent = '';
+      carta.textContent = '?';
       carta.classList.remove('volteada');
       carta.style.color = 'transparent';
       carta.style.cursor = 'pointer';
