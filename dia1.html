@@ -119,7 +119,7 @@
       grid-gap: 10px;
       justify-content: center;
     }
-.carta {
+   .carta {
   width: 80px;
   height: 80px;
   background-color: #1A2B3D;
@@ -128,8 +128,12 @@
   justify-content: center;
   align-items: center;
   font-size: 2.8rem;
+
+  /* ✅ Asegura compatibilidad con emojis en iPhone, Android y más */
   font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+
   cursor: pointer;
+  color: transparent;
   user-select: none;
   box-shadow: 0 0 8px #00B4D8aa;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -139,17 +143,20 @@
   background-color: #00B4D8;
   color: #0B1D2A;
   cursor: default;
-  visibility: visible;
+
+  /* ✅ Refuerza el uso de la fuente de emojis cuando están volteadas */
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+
   box-shadow: 0 0 12px #00B4D8;
 }
 
-.carta.acertada {
-  background-color: #00A0B8;
-  color: #0B1D2A;
-  cursor: default;
-  visibility: visible;
-  box-shadow: 0 0 20px #00B4D8;
-}  
+    .carta.acertada {
+      background-color: #00A0B8;
+      color: #0B1D2A;
+      cursor: default;
+      box-shadow: 0 0 20px #00B4D8;
+      font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif; /* Asegura visualización correcta de emojis también cuando están acertadas */
+}
     #mensajeFinal {
       margin-top: 25px;
       font-size: 1.4rem;
