@@ -119,7 +119,7 @@
       grid-gap: 10px;
       justify-content: center;
     }
-   .carta {
+  .carta {
   width: 80px;
   height: 80px;
   background-color: #1A2B3D;
@@ -128,35 +128,39 @@
   justify-content: center;
   align-items: center;
   font-size: 2.8rem;
-
-  /* ✅ Asegura compatibilidad con emojis en iPhone, Android y más */
   font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
-
   cursor: pointer;
-  color: transparent;
   user-select: none;
   box-shadow: 0 0 8px #00B4D8aa;
   transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+}
+
+/* Emoji oculto por defecto */
+.carta::after {
+  content: attr(data-valor);
+  color: transparent;
+  transition: color 0.3s ease;
+}
+
+/* Al voltear, muestra el emoji */
+.carta.volteada::after,
+.carta.acertada::after {
+  color: #0B1D2A;
 }
 
 .carta.volteada {
   background-color: #00B4D8;
-  color: #0B1D2A;
   cursor: default;
-
-  /* ✅ Refuerza el uso de la fuente de emojis cuando están volteadas */
-  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
-
   box-shadow: 0 0 12px #00B4D8;
 }
 
-    .carta.acertada {
-      background-color: #00A0B8;
-      color: #0B1D2A;
-      cursor: default;
-      box-shadow: 0 0 20px #00B4D8;
-      font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif; /* Asegura visualización correcta de emojis también cuando están acertadas */
+.carta.acertada {
+  background-color: #00A0B8;
+  cursor: default;
+  box-shadow: 0 0 20px #00B4D8;
 }
+
     #mensajeFinal {
       margin-top: 25px;
       font-size: 1.4rem;
@@ -302,7 +306,7 @@
         const carta = document.createElement('div');
         carta.classList.add('carta');
         carta.dataset.valor = valor;
-        carta.textContent = '?';
+        //carta.textContent = '?';
         carta.addEventListener('click', manejarClick);
         tablero.appendChild(carta);
       });
@@ -344,14 +348,14 @@
     }
 
     function mostrarCarta(carta) {
-      carta.textContent = carta.dataset.valor;
+      //carta.textContent = carta.dataset.valor;
       carta.classList.add('volteada');
       carta.style.color = '#003300';
       carta.style.cursor = 'default';
     }
 
     function ocultarCarta(carta) {
-      carta.textContent = '?';
+      //carta.textContent = '?';
       carta.classList.remove('volteada');
       carta.style.color = 'transparent';
       carta.style.cursor = 'pointer';
