@@ -138,7 +138,7 @@
 
     .carta.volteada {
       background-color: #00B4D8;
-      color: #0B1D2A;
+      color: #ffffff; /* ✅ Blanco para que el emoji se vea bien */
       cursor: default;
       box-shadow: 0 0 12px #00B4D8;
     }
@@ -337,7 +337,7 @@
     function mostrarCarta(carta) {
       carta.textContent = carta.dataset.valor;
       carta.classList.add('volteada');
-      carta.style.color = '#003300';
+      //carta.style.color = '#003300';
       carta.style.cursor = 'default';
     }
 
