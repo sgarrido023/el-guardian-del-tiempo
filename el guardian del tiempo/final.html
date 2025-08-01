@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Día 7 - El Horizonte Final</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0B1D2A, #1A2B3D);
+      font-family: 'Orbitron', monospace;
+      color: #EAC674;
+      min-height: 100vh;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+
+    .btn-volver {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 1.1rem;
+      color: #00B4D8;
+      text-decoration: none;
+      padding: 10px 15px;
+      border: 2px solid #00B4D8;
+      border-radius: 10px;
+      background-color: transparent;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .btn-volver:hover {
+      background-color: rgba(0, 180, 216, 0.1);
+      box-shadow: 0 0 10px #00B4D8;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      background: rgba(11, 29, 42, 0.85);
+      border: 2px solid #00B4D8;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 20px #00B4D8cc;
+    }
+
+    h1, h2 {
+      color: #F9A03F;
+      text-shadow: 0 0 10px #F9A03Fcc;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #EAC674;
+      margin-bottom: 15px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1rem;
+      width: 80%;
+      max-width: 300px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 25px;
+      font-size: 1rem;
+      font-family: 'Orbitron', monospace;
+      border-radius: 10px;
+      border: none;
+      background-color: #F9A03F;
+      color: #0B1D2A;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #F9A03Fcc;
+      transition: 0.3s ease;
+    }
+
+    button:hover:not(.bloqueado) {
+      background-color: #FFD280;
+      box-shadow: 0 0 15px #FFD280;
+    }
+
+    .mensaje, .mensaje-final {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #00ffcc;
+    }
+
+    .bloqueado {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .puzzle-container {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      gap: 5px;
+      justify-content: center;
+      display: none;
+    }
+
+    .pieza {
+      width: 100px;
+      height: 100px;
+      background-size: 300px 300px;
+      background-image: url(imagenes/puzzle\ reloj\ final.png); /* Asegúrate de que la imagen exista */
+      border: 1px solid #F9A03Fcc;
+      cursor: pointer;
+    }
+
+    .pieza.vacia {
+      background: none;
+      border: none;
+      cursor: default;
+    }
+
+    .viajera-final {
+      display: none;
+      margin: 30px auto;
+      max-width: 80%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00B4D8aa;
+      animation: fadeIn 2s ease-in forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .firma-final {
+      margin-top: 25px;
+      font-style: italic;
+      font-weight: bold;
+      color: #FFD280;
+    }
+
+    .debug-btn {
+      margin-top: 20px;
+      background-color: #00B4D8;
+      color: white;
+      font-size: 0.9rem;
+    }
+        .imagen-dia {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #00B4D8aa;
+}
+    /* Ajuste para móviles */
+     @media screen and (max-width: 480px) {
+    .viajera-final {
+      max-width: 60%;
+      margin: 20px auto;
+    }
+
+    .mensaje-final {
+      font-size: 1rem;
+    }
+
+    .firma-final {
+      font-size: 0.9rem;
+    }
+  }
+  </style>
+</head>
+<body>
+    <a href="instrucciones.html" class="btn-volver">← Volver</a>
+  <div class="container">
+    <h1> El final - La última prueba</h1>
+    <p>
+  Con un rugido que desgarró el firmamento, la Viajera canalizó cada instante vivido, cada fragmento de futuro robado. <br>
+      Sus manos ardieron como soles gemelos. No quedaba miedo. Solo fuego. <br>
+</p>
+<p>
+  El Guardián retrocedió, por primera vez dudó.<br><br>
+
+
+Ella lo enfrentó, cara a cara,
+y con una última llamarada, fundió el tiempo mismo.
+Las sombras se deshicieron,
+el eco de su grito aún flota en la eternidad... <br><br>
+
+El Guardián cayó. No destruido, sino liberado.
+La prueba había terminado. <br>
+
+Y tú...
+Tú fuiste la chispa que lo hizo posible.
+</p>
+
+<img src="imagenes/imagen final.png" alt="Ilustración Día 7 - El horizote final" class="imagen-dia" />
+    <!-- Acertijo final -->
+    <section>
+      <h2>El Último Acertijo</h2>
+      <p><em>“La línea temporal cambió aquella noche. Una ofrenda sin importancia… o eso parecía. Pero ese objeto escondía más de lo que nadie imaginaba.Fue el inicio de todo. <br>
+       ¿Qué te entregué aquella noche, cuando nuestros caminos se juntaron? <br>
+       Con una sola palabra, el pasado cobrará sentido. ”</em></p>
+      <input type="text" id="respuesta" placeholder="Escribe tu respuesta...">
+      <br>
+      <button onclick="verificarRespuesta()">Comprobar</button>
+      <div class="mensaje" id="mensaje"></div>
+    </section>
+
+    <!-- Puzzle -->
+    <section id="puzzleSeccion">
+      <h2>Prueba Final</h2>
+      <p>Completa el puzzle para restaurar la última imagen del tiempo.</p>
+      <div class="puzzle-container" id="puzzle"></div>
+      <div class="mensaje" id="mensajePuzzle"></div>
+    </section>
+
+    <!-- Imagen final -->
+    <img src="imagenes/laviajera.png" id="viajeraFinal" class="viajera-final" alt="La Viajera del Tiempo">
+    <p class="mensaje-final" id="mensajeFinal" style="display: none;">
+      Gracias por seguirme a través del tiempo.<br>
+      Por cada decisión, cada intento.<br>
+      Siempre estuve aquí.<br>
+      Siempre fui yo.
+    </p>
+    <p class="firma-final" id="firmaFinal" style="display: none;">&mdash; Tu Viajera del Tiempo 💫</p>
+
+    <!-- Botón de reinicio visible solo en modo debug -->
+    <button class="debug-btn" id="resetBtn" onclick="reiniciarDebug()" style="display:none;">🔄 Reiniciar prueba</button>
+  </div>
+
+  <script>
+    const debugMode = true; // ⬅️ CAMBIA A false PARA PRODUCCIÓN
+    const respuestaCorrecta = 'pingus'; // ⬅️ TU FRASE CORRECTA
+    const mensaje = document.getElementById('mensaje');
+
+    if (debugMode) {
+      console.log('🛠️ Modo Debug Activado');
+      document.getElementById('resetBtn').style.display = 'inline-block';
+    }
+
+    if (localStorage.getItem('puzzleResuelto') === 'true') {
+      mostrarFinal();
+    }
+
+    function verificarRespuesta() {
+      const input = document.getElementById('respuesta').value.trim().toLowerCase();
+      if (debugMode || input === respuestaCorrecta.toLowerCase()) {
+        mensaje.textContent = '✅ Acertijo resuelto. Puedes comenzar el puzzle.';
+        mensaje.style.color = '#00ff00';
+        iniciarPuzzle();
+      } else {
+        mensaje.textContent = '❌ Incorrecto. Inténtalo de nuevo.';
+        mensaje.style.color = '#ff4444';
+      }
+    }
+
+    let piezas = [];
+
+    function iniciarPuzzle() {
+      document.getElementById('puzzleSeccion').style.display = 'block';
+      const puzzle = document.getElementById('puzzle');
+      puzzle.style.display = 'grid';
+
+      piezas = debugMode
+        ? [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        : [...Array(9).keys()].sort(() => Math.random() - 0.5);
+
+      renderizarPuzzle();
+    }
+
+    function renderizarPuzzle() {
+      const puzzle = document.getElementById('puzzle');
+      puzzle.innerHTML = '';
+      piezas.forEach((num, i) => {
+        const div = document.createElement('div');
+        div.classList.add('pieza');
+        if (num === 8) {
+          div.classList.add('vacia');
+          div.style.background = 'none';
+        } else {
+          const row = Math.floor(num / 3);
+          const col = num % 3;
+          div.style.backgroundPosition = `-${col * 100}px -${row * 100}px`;
+        }
+        div.dataset.index = i;
+        div.addEventListener('click', () => moverPieza(i));
+        puzzle.appendChild(div);
+      });
+
+      if (debugMode && piezas.join() === '0,1,2,3,4,5,6,7,8') {
+        setTimeout(mostrarFinal, 300);
+      }
+    }
+
+    function moverPieza(indice) {
+      const vacia = piezas.indexOf(8);
+      const movibles = [vacia - 1, vacia + 1, vacia - 3, vacia + 3];
+      if (!movibles.includes(indice)) return;
+      if (Math.abs(vacia - indice) === 1 && Math.floor(vacia / 3) !== Math.floor(indice / 3)) return;
+
+      [piezas[vacia], piezas[indice]] = [piezas[indice], piezas[vacia]];
+      renderizarPuzzle();
+
+      if (piezas.join() === '0,1,2,3,4,5,6,7,8') mostrarFinal();
+    }
+
+    function mostrarFinal() {
+      document.getElementById('puzzleSeccion').style.display = 'none';
+      document.getElementById('viajeraFinal').style.display = 'block';
+      document.getElementById('mensajeFinal').style.display = 'block';
+      document.getElementById('firmaFinal').style.display = 'block';
+      localStorage.setItem('puzzleResuelto', 'true');
+      if (debugMode) console.log('🎉 Puzzle resuelto');
+    }
+
+    function reiniciarDebug() {
+      localStorage.removeItem('puzzleResuelto');
+      location.reload();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>El Guardián del Tiempo ⏳ - Inicio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+    
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0B1D2A, #1A2B3D);
+      font-family: 'Orbitron', monospace;
+      color: #EAC674;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Cambié height: 100vh; por min-height: 100vh; */
+      overflow: auto; /* Permitir el scroll si el contenido excede la pantalla */
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .contenedor-inicio {
+      background: rgba(11, 29, 42, 0.85);
+      border: 3px solid #00B4D8;
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 600px;
+      box-shadow: 0 0 20px #00B4D8cc;
+      animation: glow 2.5s ease-in-out infinite alternate;
+    }
+    .btn-volver {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.1rem;
+  color: #00B4D8;
+  text-decoration: none;
+  padding: 10px 15px;
+  border: 2px solid #00B4D8;
+  border-radius: 20px;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.btn-volver:hover {
+  background-color: rgba(0, 180, 216, 0.1);
+  box-shadow: 0 0 10px #00B4D8;
+}
+
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 10px #00B4D8aa;
+      }
+      100% {
+        box-shadow: 0 0 30px #00B4D8ff;
+      }
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px #F9A03Fcc;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      margin-bottom: 30px;
+      color: #EAC674;
+      user-select: none;
+    }
+
+    p.firma {
+      margin-top: 20px;
+      font-style: italic;
+      font-weight: 700;
+      color: #EAC674;
+      text-shadow: 0 0 8px #EAC674aa;
+    }
+
+    button {
+      background: #F9A03F;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 50px;
+      color: #0B1D2A;
+      font-family: 'Orbitron', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 20px #F9A03Fcc;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background: #FFD280;
+      box-shadow: 0 0 30px #FFD280ff;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+      /* Estilo para la imagen debajo de la firma */
+    .imagen-debajo {
+      margin-top: 5px;
+      width: 100%;
+      max-width: 400px; /* Ajusta el tamaño máximo de la imagen */
+      border-radius: 10px;
+    }
+    @media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+<a href="index.html" class="btn-volver">← Volver</a>
+  <div class="contenedor-inicio">
+    <h1>El Guardián del Tiempo⏳</h1>
+    <p>
+      Mientras lees esto, yo ya he partido al otro lado del tiempo...<br><br>
+      He dejado algo especial para ti.<br><br>
+      El Guardián del Tiempo ha robado los 7 días que me alejan de ti.<br>
+      Pero no está todo perdido. Tú eres el elegido para recuperarlos, uno a uno.<br><br>
+      Confío en ti.
+      No estoy sola… Él me ha acompañado por siglos a través de portales rotos y días olvidados.
+      Lo llaman Bondar. Pero yo aún lo recuerdo como tú lo conociste: Bond
+    </p>
+    <p class="firma">La viajera del tiempo 💫</p>
+
+     <!-- Imagen debajo de la firma -->
+    <img src="imagenes/imagen inicio juego.png" alt="Imagen debajo de la firma" class="imagen-debajo" />
+    <button id="btn-aceptar-mision">¿Aceptas la misión?</button>
+  </div>
+
+<script>
+  const btnAceptar = document.getElementById('btn-aceptar-mision');
+  btnAceptar.addEventListener('click', () => {
+    // Navegar a la página de instrucciones
+    window.location.href = 'instrucciones.html';
+  });
+</script>
+
+</body>
+</html>
+

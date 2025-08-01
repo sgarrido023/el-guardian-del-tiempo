@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>El Guardián del Tiempo - Instrucciones</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0B1D2A, #1A2B3D);
+      font-family: 'Orbitron', monospace;
+      color: #EAC674;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+      overflow-y: auto;
+    }
+
+    .contenedor-instrucciones {
+      background: rgba(11, 29, 42, 0.85);
+      border: 3px solid #00B4D8;
+      border-radius: 20px;
+      padding: 30px 40px;
+      max-width: 700px;
+      max-height: none; /* máximo 90% de la altura viewport */
+      overflow-y: visible; /* scroll interno si se pasa */
+      box-shadow: 0 0 20px #00B4D8cc;
+      animation: glow 2.5s ease-in-out infinite alternate;
+      /* Scrollbar personalizado para Webkit (Chrome, Safari) */
+  scrollbar-width: thin;               /* Firefox */
+  scrollbar-color: transparent transparent; /* Firefox */
+}
+
+/* Para Chrome, Safari y Edge */
+.contenedor-instrucciones::-webkit-scrollbar {
+  width: 6px;
+}
+
+.contenedor-instrucciones::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.contenedor-instrucciones::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 3px;
+}
+
+/* Cuando el usuario pasa el ratón, aparece un poco más visible */
+.contenedor-instrucciones:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 180, 216, 0.4);
+    }
+
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 10px #00B4D8cc;
+      }
+      100% {
+        box-shadow: 0 0 30px #00B4D8ff;
+      }
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #F9A03Fcc;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 25px 0 15px;
+      color: #EAC674;
+      text-shadow: 0 0 8px #00B4D8cc;
+    }
+
+    p {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      color: #EAC674;
+      user-select: none;
+    }
+    
+    .btn-comenzar {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  color: #0B1D2A;
+  background-color: #F9A03F;
+  border: none;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 0 15px #F9A03Fcc;
+  transition: all 0.3s ease;
+}
+
+.btn-comenzar:hover {
+  background-color: #FFD280;
+  box-shadow: 0 0 20px #FFD280ff;
+}
+.btn-volver {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 1.1rem;
+      color: #00B4D8;
+      text-decoration: none;
+      padding: 10px 15px;
+      border: 2px solid #00B4D8;
+      border-radius: 10px;
+      background-color: transparent;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+    .btn-volver:hover {
+      background-color: rgba(0, 180, 216, 0.1);
+      box-shadow: 0 0 10px #00B4D8;
+    }
+    
+.img-ilustracion {
+  margin-top: 30px;
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #00B4D8;
+}
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .btn-comenzar {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+
+  .btn-volver {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    top: 15px;
+    left: 15px;
+  }
+
+  .contenedor-instrucciones {
+    padding: 20px;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .img-ilustracion {
+    margin-top: 20px;
+    max-width: 100%;
+    height: auto;
+  }
+}
+  </style>
+</head>
+<body>
+    <a href="inicio.html" class="btn-volver">← Volver</a>
+  <div class="contenedor-instrucciones">
+    <h1>Cuando todo empezó⏳</h1>
+
+    <h2>La Historia🌀</h2>
+    <p>
+      Hace exactamente 7 días, un evento inesperado alteró el flujo del tiempo.
+       Mientras me preparaba para nuestras vacaciones, un portal se abrió sin previo aviso… y fui arrastrada a otra línea temporal.
+       El responsable es el Guardián del Tiempo: una entidad misteriosa que custodia los momentos más valiosos de nuestras vidas. Por alguna razón, ha decidido ponerme a prueba... o ponerte a prueba a ti .
+       Para regresar, necesito tu ayuda. 
+       El Guardián ha dividido los 7 días en desafíos diarios. Solo si logras resolverlos todos, podré volver a nuestro presente. <br>
+       
+       Cada día se compone de dos pruebas: <br>
+       🧠 Un acertijo por la mañana. <br>
+       🎮 Un minijuego por la tarde (solo accesible si has resuelto el acertijo y son las 20:00h). <br>
+
+       La dificultad aumentará a medida que avances. <br>
+
+       ¿Estás dispuesto a enfrentarte al tiempo por mí?
+    </p>
+    <img src="imagenes/imagen_instrucciones.png" alt="Ilustración de la historia" class="img-ilustracion">
+
+
+<a href="dia1.html" class="btn-comenzar">Comenzar el Día 1</a>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Día 3 - El Desafío de la Reacción</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0B1D2A, #1A2B3D);
+      font-family: 'Orbitron', monospace;
+      color: #EAC674;
+      min-height: 100vh;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+    .btn-volver {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 1.1rem;
+      color: #00B4D8;
+      text-decoration: none;
+      padding: 10px 15px;
+      border: 2px solid #00B4D8;
+      border-radius: 10px;
+      background-color: transparent;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+    .btn-volver:hover {
+      background-color: rgba(0, 180, 216, 0.1);
+      box-shadow: 0 0 10px #00B4D8;
+    }
+    .container {
+      max-width: 720px;
+      margin: 80px auto 40px;
+      background: rgba(11, 29, 42, 0.85);
+      border: 2px solid #00B4D8;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 20px #00B4D8;
+    }
+    h1, h2 {
+      margin-bottom: 20px;
+      color: #F9A03F;
+      text-shadow: 0 0 10px #F9A03Fcc;
+    }
+    p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #EAC674;
+  margin-bottom: 15px;
+}
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1rem;
+      width: 80%;
+      max-width: 300px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+      text-align: center;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 25px;
+      font-size: 1rem;
+      font-family: 'Orbitron', monospace;
+      border-radius: 10px;
+      border: none;
+      background-color: #F9A03F;
+      color: #0B1D2A;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #F9A03Fcc;
+      transition: 0.3s ease;
+    }
+    button:hover:not(.bloqueado) {
+      background-color: #FFD280;
+      box-shadow: 0 0 15px #FFD280;
+    }
+    .bloqueado {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+    #mensaje {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    #mensajeReaccion {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #00ff00;
+      min-height: 2em;
+    }
+    #intentosRestantes {
+      margin-top: 5px;
+      font-weight: bold;
+      color: #ffbb00;
+    }
+    #btnDia4 {
+      margin-top: 30px;
+      width: 100%;
+      max-width: 250px;
+      font-size: 1.2rem;
+      display: none;
+      background-color: #FFD280;
+      color: #003300;
+      font-weight: bold;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 15px #F9A03Fcc;
+      transition: 0.3s ease;
+    }
+    #btnDia4:hover {
+      background-color: #FFD280;
+      box-shadow: 0 0 20px #F9A03Fcc;
+    }
+    .imagen-dia {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #00B4D8aa;
+}
+  </style>
+</head>
+<body>
+  <a href="instrucciones.html" class="btn-volver">← Volver</a>
+  <div class="container">
+    <h1>Día 3 — Ecos del futuro 🔮</h1>
+    <p>
+      Hoy he recibido señales del futuro… susurros de lo que está por venir.
+      Pero esas señales están fragmentadas. Solo tú puedes descifrarlas.<br/>
+      Cada pista que descubras nos acerca un poco más a restaurar la línea temporal correcta.
+      No es solo un juego, es nuestra única oportunidad.<br/>
+      Prepárate. El destino depende de ti más de lo que imaginas.<br/>
+      ¿Estás listo para aceptar el reto?
+    </p>
+
+<img src="imagenes/imagen dia 3.png" alt="Ilustración Día 3 - Ecos del futuro" class="imagen-dia" />
+
+    <!-- Acertijo -->
+    <section class="acertijo">
+      <h2>Acertijo del día</h2>
+      <p>“Tiene patas, pero no anda. Tiene respaldo, pero no descansa. ¿qué es?”</p>
+      <input type="text" id="respuesta" placeholder="Escribe tu respuesta..." autocomplete="off" />
+      <br />
+      <button id="btnComprobar" onclick="verificarRespuesta()">Comprobar</button>
+      <div id="mensaje"></div>
+    </section>
+
+    <!-- Minijuego de reacción -->
+    <section class="minijuego" style="margin-top: 40px;">
+      <h2>Minijuego de la Tarde</h2>
+      <p id="estadoMinijuego">🔒 Resuelve el acertijo y espera a las 20:00 para desbloquear el minijuego.</p>
+      <button id="btnIniciar" class="bloqueado" onclick="iniciarJuego()">Iniciar Juego</button>
+
+      <div id="juegoReaccion" style="margin-top: 30px; display:none;">
+        <div id="mensajeReaccion">Prepárate...</div>
+        <button id="btnReaccion" style="padding: 20px 40px; font-size: 1.5rem; border-radius: 15px; border:none; background:#00ff00; color:#003300; font-weight: bold; cursor: pointer; display:none;">¡CLICK!</button>
+        <div id="intentosRestantes"></div>
+        <div id="mejorTiempo" style="margin-top: 15px; font-weight: bold;"></div>
+      </div>
+    </section>
+
+    <button id="btnDia4" onclick="irDia4()">Comenzar Día 4</button>
+  </div>
+
+  <script>
+    // Variables generales
+    const respuestaCorrecta = 'silla';
+    const horaDesbloqueo = 20; // 20:00 hrs
+    let intentos = 3;
+    let mejorTiempo = localStorage.getItem('dia3_mejor_tiempo') ? parseFloat(localStorage.getItem('dia3_mejor_tiempo')) : null;
+    let tiempoInicio = 0;
+    let timeoutID = null;
+    let juegoActivo = false;
+    const debug = true; // ⬅️ Activa modo pruebas
+
+    // Elementos DOM
+    const btnComprobar = document.getElementById('btnComprobar');
+    const inputRespuesta = document.getElementById('respuesta');
+    const mensaje = document.getElementById('mensaje');
+    const estadoMinijuego = document.getElementById('estadoMinijuego');
+    const btnIniciar = document.getElementById('btnIniciar');
+    const mensajeReaccion = document.getElementById('mensajeReaccion');
+    const btnReaccion = document.getElementById('btnReaccion');
+    const intentosRestantes = document.getElementById('intentosRestantes');
+    const mejorTiempoDiv = document.getElementById('mejorTiempo');
+    const btnDia4 = document.getElementById('btnDia4');
+
+    // En modo debug, limpiar localStorage para que no quede guardado
+    if (debug) {
+      localStorage.removeItem('dia3_acertijo_resuelto');
+      localStorage.removeItem('dia3_minijuego_completado');
+      localStorage.removeItem('dia3_mejor_tiempo');
+    }
+
+    // Verificar respuesta del acertijo
+    function verificarRespuesta() {
+      const valor = inputRespuesta.value.trim().toLowerCase();
+      if (valor === respuestaCorrecta) {
+        mensaje.textContent = '✅ ¡Correcto! Has desbloqueado el minijuego para las 20:00.';
+        mensaje.style.color = '#00ff00';
+        localStorage.setItem('dia3_acertijo_resuelto', 'true');
+        inputRespuesta.value = ''; // Limpiar el input para no mostrar la respuesta
+        inputRespuesta.disabled = true;
+        btnComprobar.disabled = true;
+        verificarMinijuego();
+      } else {
+        mensaje.textContent = '❌ Incorrecto. Inténtalo de nuevo.';
+        mensaje.style.color = '#ff4444';
+      }
+    }
+
+    // Verificar si minijuego puede desbloquearse
+    function verificarMinijuego() {
+      const acertijoResuelto = localStorage.getItem('dia3_acertijo_resuelto') === 'true';
+      const ahora = new Date();
+      const hora = ahora.getHours();
+
+      if (acertijoResuelto && (hora >= horaDesbloqueo || debug)) {
+        btnIniciar.classList.remove('bloqueado');
+        btnIniciar.disabled = false;
+        estadoMinijuego.textContent = '✅ ¡Minijuego desbloqueado! Puedes jugar ahora. Haz Click en el botón en un tiempo de reacción menor de 0.6 seg para superar la prueba';
+      } else if (acertijoResuelto) {
+        estadoMinijuego.textContent = '⏳ Espera a las 20:00 para desbloquear el minijuego.';
+        btnIniciar.classList.add('bloqueado');
+        btnIniciar.disabled = true;
+      } else {
+        estadoMinijuego.textContent = '🔒 Resuelve el acertijo para desbloquear el minijuego.';
+        btnIniciar.classList.add('bloqueado');
+        btnIniciar.disabled = true;
+      }
+    }
+
+    // Iniciar juego de reacción
+    function iniciarJuego() {
+      if (juegoActivo) return;
+      juegoActivo = true;
+      intentos = 3;
+      intentosRestantes.textContent = `Intentos restantes: ${intentos}`;
+      mensajeReaccion.textContent = 'Prepárate...';
+      btnReaccion.style.display = 'none';
+      btnIniciar.style.display = 'none';
+      mejorTiempoDiv.textContent = mejorTiempo ? `Mejor tiempo: ${mejorTiempo.toFixed(3)} segundos` : 'Aún no tienes mejor tiempo.';
+      document.getElementById('juegoReaccion').style.display = 'block';
+
+      // Espera aleatoria entre 2 y 5 segundos para mostrar botón
+      const espera = Math.random() * 3000 + 2000;
+      timeoutID = setTimeout(() => {
+        mensajeReaccion.textContent = '¡CLICK!';
+        btnReaccion.style.display = 'inline-block';
+        tiempoInicio = performance.now();
+      }, espera);
+    }
+
+    btnReaccion.addEventListener('click', () => {
+  if (!juegoActivo || tiempoInicio === 0) return;
+  const tiempoFinal = performance.now();
+  const tiempoReaccion = (tiempoFinal - tiempoInicio) / 1000;
+  tiempoInicio = 0;
+  btnReaccion.style.display = 'none';
+
+  if (tiempoReaccion <= 0.6) {
+    mensajeReaccion.textContent = `🎉 ¡Prueba superada! Tiempo: ${tiempoReaccion.toFixed(3)} segundos.`;
+    juegoActivo = false;
+    btnIniciar.style.display = 'inline-block';
+    localStorage.setItem('dia3_minijuego_completado', 'true');
+    verificarBotonDia4();
+  } else {
+    intentos--;
+    mensajeReaccion.textContent = `⏳ Muy lento! Tu tiempo fue ${tiempoReaccion.toFixed(3)} segundos.`;
+    intentosRestantes.textContent = `Intentos restantes: ${intentos}`;
+
+    if (intentos > 0) {
+      mensajeReaccion.textContent += ' Prepárate para el siguiente intento...';
+      timeoutID = setTimeout(() => {
+        mensajeReaccion.textContent = 'Prepárate...';
+        const espera = Math.random() * 3000 + 2000;
+        timeoutID = setTimeout(() => {
+          mensajeReaccion.textContent = '¡CLICK!';
+          btnReaccion.style.display = 'inline-block';
+          tiempoInicio = performance.now();
+        }, espera);
+      }, 2000);
+    } else {
+      mensajeReaccion.textContent += ' ¡Juego terminado! No superaste la prueba.';
+      juegoActivo = false;
+      btnIniciar.style.display = 'inline-block';
+      localStorage.setItem('dia3_minijuego_completado', 'false');
+      verificarBotonDia4();
+    }
+  }
+});
+
+ 
+
+    // Mostrar botón Día 4 si completó acertijo y minijuego
+    function verificarBotonDia4() {
+      const acertijo = localStorage.getItem('dia3_acertijo_resuelto') === 'true';
+      const minijuego = localStorage.getItem('dia3_minijuego_completado') === 'true';
+
+      if (acertijo && minijuego) {
+        btnDia4.style.display = 'inline-block';
+        btnDia4.classList.remove('bloqueado');
+        btnDia4.disabled = false;
+      }
+    }
+
+    function irDia4() {
+      window.location.href = 'dia4.html';
+    }
+
+    // Al cargar la página
+    window.onload = () => {
+      // Solo rellenar respuesta si NO está en modo debug y si el acertijo está resuelto
+      if (!debug && localStorage.getItem('dia3_acertijo_resuelto') === 'true') {
+        inputRespuesta.value = respuestaCorrecta;
+        inputRespuesta.disabled = true;
+        btnComprobar.disabled = true;
+        mensaje.textContent = '✅ ¡Correcto! Has desbloqueado el minijuego para las 20:00.';
+        mensaje.style.color = '#00ff00';
+      } else {
+        // En debug limpiar input y permitir escribir
+        inputRespuesta.value = '';
+        inputRespuesta.disabled = false;
+        btnComprobar.disabled = false;
+        mensaje.textContent = '';
+      }
+
+      verificarMinijuego();
+      verificarBotonDia4();
+    }
+  </script>
+</body>
+</html>

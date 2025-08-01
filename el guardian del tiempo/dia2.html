@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Día 2 - El Legado de la Viajera</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0B1D2A, #1A2B3D);
+      font-family: 'Orbitron', monospace;
+      color: #EAC674;
+      min-height: 100vh;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 80px auto;
+      background: rgba(11, 29, 42, 0.85);
+      border: 2px solid #00B4D8;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 20px #00B4D8cc;
+    }
+
+    .btn-volver {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 1.1rem;
+      color: #00B4D8;
+      text-decoration: none;
+      padding: 10px 15px;
+      border: 2px solid #00B4D8;
+      border-radius: 10px;
+      background-color: transparent;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .btn-volver:hover {
+      background-color: rgba(0, 180, 216, 0.1);
+      box-shadow: 0 0 10px #00B4D8;
+    }
+
+    h1, h2, p {
+      margin-bottom: 20px;
+      color: #F9A03F;
+      text-shadow: 0 0 10px #F9A03Fcc;
+    }
+p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #EAC674;
+  margin-bottom: 15px;
+}
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1rem;
+      width: 80%;
+      max-width: 300px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 25px;
+      font-size: 1rem;
+      font-family: 'Orbitron', monospace;
+      border-radius: 10px;
+      border: none;
+      background-color: #F9A03F;
+      color: #0B1D2A;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #F9A03Fcc;
+      transition: 0.3s ease;
+    }
+
+    button:hover:not(.bloqueado) {
+      background-color: #FFD280;
+      box-shadow: 0 0 15px #FFD280;
+    }
+
+    .mensaje {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .bloqueado {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .puzzle-container {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      gap: 5px;
+      justify-content: center;
+      display: none;
+    }
+
+    .pieza {
+      width: 100px;
+      height: 100px;
+      background-size: 300px 300px;
+      background-image: url(imagenes/puzzle\ dia\ 2.jpeg); /* imagen correcta */
+      border: 1px solid #F9A03Fcc;
+      cursor: pointer;
+    }
+
+    .pieza.vacia {
+      background: none;
+      border: none;
+      cursor: default;
+    }
+
+    #btnDia3 {
+      margin-top: 30px;
+      max-width: 250px;
+      font-size: 1.2rem;
+      display: none;
+    }
+
+    #estadoPuzzle {
+      margin-top: 20px;
+    }
+    .imagen-dia {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #00B4D8aa;
+}
+@media (max-width: 600px) {
+  input[type="text"] {
+    width: 95%;
+    font-size: 1.2rem;
+    padding: 14px;
+  }
+
+  button,
+  #btnDia3 {
+    padding: 16px 28px;
+    font-size: 1.2rem;
+    width: 100%;
+    max-width: none;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  .btn-volver {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    top: 15px;
+    left: 15px;
+  }
+
+  p {
+    font-size: 1.05rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <a href="instrucciones.html" class="btn-volver">← Volver</a>
+  <div class="container">
+    <h1>Día 2 — El Legado de la Viajera🧳🌀</h1>
+    <p>Algo ha salido mal en el flujo del tiempo y está causando un caos irreversible.</p>
+    <p>Yo, como viajera del tiempo, he intentado arreglarlo, pero necesito tu ayuda para lograrlo. Cada acertijo que resuelves es una pieza esencial para reparar esta fractura temporal.</p>
+    <p>Sin tu ingenio y determinación, esta misión está condenada a fracasar y el tiempo seguirá desmoronándose.</p>
+    <p>Hoy te enfrentarás a un nuevo desafío que exigirá toda tu astucia. ¿Estás preparado para ayudarme a salvar el tiempo?</p>
+
+    <img src="imagenes/imagen dia 2.png" alt="Ilustración Día 2 - El Legado de la Viajera" class="imagen-dia" />
+    <section>
+      <h2>Acertijo del Día</h2>
+      <p>Sube llena y baja vacía, y si no se da prisa, la sopa se enfría</p>
+      <input type="text" id="respuesta" placeholder="Escribe tu respuesta..." />
+      <br />
+      <button onclick="verificarRespuesta()">Comprobar</button>
+      <div class="mensaje" id="mensaje"></div>
+    </section>
+
+    <section id="puzzleSeccion">
+      <h2>Minijuego de la Tarde</h2>
+      <p id="estadoPuzzle">🔒 Se desbloquea a las 20:00 si resolviste el acertijo.</p>
+      <button id="jugarPuzzle" class="bloqueado" onclick="iniciarPuzzle()">Jugar Puzzle</button>
+
+      <div class="puzzle-container" id="puzzle"></div>
+      <div class="mensaje" id="mensajePuzzle"></div>
+    </section>
+
+    <button id="btnDia3" class="bloqueado" onclick="irDia3()">Comenzar Día 3</button>
+  </div>
+
+  <script>
+    const debug = true; // ⬅️ MODO PRUEBAS ACTIVADO
+    const respuestaCorrecta = 'cuchara';
+
+    // Limpieza de cache si está en modo pruebas
+    if (debug) {
+      localStorage.removeItem('dia2_acertijo_resuelto');
+      localStorage.removeItem('dia2_puzzle_completado');
+    }
+
+    function verificarRespuesta() {
+      const input = document.getElementById('respuesta').value.trim().toLowerCase();
+      const mensaje = document.getElementById('mensaje');
+      if (input === respuestaCorrecta) {
+        mensaje.textContent = '✅ ¡Correcto! Minijuego disponible a las 20:00.';
+        mensaje.style.color = '#00ff00';
+        localStorage.setItem('dia2_acertijo_resuelto', 'true');
+        document.getElementById('respuesta').disabled = true;
+        verificarPuzzle();
+      } else {
+        mensaje.textContent = '❌ Incorrecto. Intenta de nuevo.';
+        mensaje.style.color = '#ff4444';
+      }
+    }
+
+    function verificarPuzzle() {
+      const acertado = localStorage.getItem('dia2_acertijo_resuelto') === 'true';
+      const ahora = new Date();
+      const hora = ahora.getHours();
+      const jugarBtn = document.getElementById('jugarPuzzle');
+      const estado = document.getElementById('estadoPuzzle');
+
+      if ((acertado && hora >= 20) || debug) {
+        jugarBtn.classList.remove('bloqueado');
+        jugarBtn.disabled = false;
+        estado.textContent = '✅ ¡Puzzle disponible! Completa el puzzle para superar la prueba';
+      } else if (acertado) {
+        estado.textContent = '⏳ Espera a las 20:00 para desbloquear el puzzle.';
+      } else {
+        estado.textContent = '🔒 Resuelve el acertijo primero.';
+      }
+    }
+
+    let piezas = [];
+    function iniciarPuzzle() {
+      const puzzle = document.getElementById('puzzle');
+      puzzle.style.display = 'grid';
+      document.getElementById('jugarPuzzle').style.display = 'none';
+
+      piezas = [];
+      for (let i = 0; i < 9; i++) piezas.push(i);
+      piezas = piezas.sort(() => Math.random() - 0.5);
+
+      renderizarPuzzle();
+    }
+
+    function renderizarPuzzle() {
+      const puzzle = document.getElementById('puzzle');
+      puzzle.innerHTML = '';
+      piezas.forEach((num, i) => {
+        const div = document.createElement('div');
+        div.classList.add('pieza');
+        if (num === 8) {
+          div.classList.add('vacia');
+          div.style.background = 'none';
+        } else {
+          const row = Math.floor(num / 3);
+          const col = num % 3;
+          div.style.backgroundPosition = `-${col * 100}px -${row * 100}px`;
+        }
+        div.dataset.index = i;
+        div.addEventListener('click', () => moverPieza(i));
+        puzzle.appendChild(div);
+      });
+    }
+
+    function moverPieza(indice) {
+      const vacia = piezas.indexOf(8);
+      const movibles = [vacia - 1, vacia + 1, vacia - 3, vacia + 3];
+      if (!movibles.includes(indice)) return;
+      if (Math.abs(vacia - indice) === 1 && Math.floor(vacia / 3) !== Math.floor(indice / 3)) return;
+
+      [piezas[vacia], piezas[indice]] = [piezas[indice], piezas[vacia]];
+      renderizarPuzzle();
+
+      if (piezas.join() === '0,1,2,3,4,5,6,7,8') {
+        document.getElementById('mensajePuzzle').textContent = '🎉 ¡Puzzle completado!';
+        localStorage.setItem('dia2_puzzle_completado', 'true');
+        verificarBotonDia3();
+      }
+    }
+
+    function irDia3() {
+      window.location.href = 'dia3.html';
+    }
+
+    function verificarBotonDia3() {
+      const acertijo = localStorage.getItem('dia2_acertijo_resuelto') === 'true';
+      const puzzle = localStorage.getItem('dia2_puzzle_completado') === 'true';
+
+      const fechaHoy = new Date();
+      const dd = String(fechaHoy.getDate()).padStart(2, '0');
+      const mm = String(fechaHoy.getMonth() + 1).padStart(2, '0');
+      const yyyy = fechaHoy.getFullYear();
+      const hoy = `${dd}-${mm}-${yyyy}`;
+      const fechaDia3 = '06-08-2025';
+
+      const btn = document.getElementById('btnDia3');
+      if ((acertijo && puzzle && hoy === fechaDia3) || debug) {
+        btn.style.display = 'inline-block';
+        btn.classList.remove('bloqueado');
+        btn.disabled = false;
+      }
+    }
+
+    window.onload = function () {
+      if (localStorage.getItem('dia2_acertijo_resuelto') === 'true') {
+        document.getElementById('respuesta').value = 'rio';
+        document.getElementById('respuesta').disabled = true;
+        document.getElementById('mensaje').textContent = '✅ ¡Correcto! Minijuego disponible a las 20:00.';
+        document.getElementById('mensaje').style.color = '#00ff00';
+      }
+
+      verificarPuzzle();
+      verificarBotonDia3();
+    };
+  </script>
+</body>
+</html>

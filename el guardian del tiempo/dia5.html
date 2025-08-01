@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Día 5 - Fractura Final</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0B1D2A, #1A2B3D);
+      font-family: 'Orbitron', monospace;
+      color: #EAC674;
+      min-height: 100vh;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+
+    .btn-volver {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 1.1rem;
+      color: #00B4D8;
+      text-decoration: none;
+      padding: 10px 15px;
+      border: 2px solid #00B4D8;
+      border-radius: 10px;
+      background-color: transparent;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .btn-volver:hover {
+      background-color: rgba(0, 180, 216, 0.1);
+      box-shadow: 0 0 10px #00B4D8;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 80px auto 40px;
+      background: rgba(11, 29, 42, 0.85);
+      border: 2px solid #00B4D8;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 20px #00B4D8cc;
+    }
+
+    h1, h2 {
+      margin-bottom: 20px;
+      color: #F9A03F;
+      text-shadow: 0 0 10px #F9A03Fcc;
+    }
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #EAC674;
+      margin-bottom: 15px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1rem;
+      width: 80%;
+      max-width: 300px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 25px;
+      font-size: 1rem;
+      font-family: 'Orbitron', monospace;
+      border-radius: 10px;
+      border: none;
+      background-color: #F9A03F;
+      color: #0B1D2A;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #F9A03Fcc;
+      transition: 0.3s ease;
+    }
+
+    button:hover:not(.bloqueado) {
+      background-color: #FFD280;
+      box-shadow: 0 0 15px #FFD280;
+    }
+
+    .bloqueado {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    #mensaje, #mensajeJuego {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    /* LABERINTO */
+    #laberinto {
+      margin: 30px auto;
+      display: grid;
+      grid-template-columns: repeat(10, 30px);
+      gap: 2px;
+      justify-content: center;
+      display: none;
+    }
+
+    .celda {
+      width: 30px;
+      height: 30px;
+      background-color: #000;
+      border: 1px solid #00B4D8;
+    }
+
+    .camino {
+      background-color: #284865;
+    }
+
+    .jugador {
+      background-color: #F9A03F  !important;
+    }
+
+    .meta {
+      background-color: #EAC674  !important;
+    }
+
+    #controles {
+      margin-top: 15px;
+      display: none;
+    }
+
+    #controles button {
+      margin: 5px;
+      width: 60px;
+      height: 40px;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      #controles {
+        display: block;
+      }
+    }
+.imagen-dia {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #00B4D8aa;
+}
+  </style>
+</head>
+<body>
+  <a href="instrucciones.html" class="btn-volver">← Volver</a>
+  <div class="container">
+    <h1>Día 5 — El laberinto del engaño 🌀🕳️</h1>
+    <p>
+      Algo no cuadra. Durante días has confiado en la Viajera del Tiempo… pero ahora los fragmentos no encajan<br>
+      He reunido los datos dispersos del pasado y el futuro, hay lagunas, pero una cosa es clara: alguien ha estado manipulando el flujo temporal.<br>
+      Y no soy yo. — El Guardián del Tiempo<br><br>
+
+     De repente, te llega un nuevo mensaje oculto… pero esta vez no es de la Viajera, sino de alguien más… <strong><br><br>Ya no sabes en quién confiar, ¿verdad? Has seguido su juego… pero ¿y si ella no quiere salvar el tiempo, sino reescribirlo a su antojo?</strong><br><br>
+      ¿Será el Guardián realmente el villano, o todo ha sido un montaje desde el principio?
+      Esto no es un juego. Esta vez, escapar del laberinto no solo te salvará a ti…<br>
+      Será la única forma de reiniciarlo todo.
+    </p>
+
+<img src="imagenes/imagen dia 5.png" alt="Ilustración Día 5 - El laberinto del engaño 🌀🕳️" class="imagen-dia" />
+
+    <h2>Acertijo del Día</h2>
+    <p>“Si me hablas, desaparezco. ¿Qué soy?”</p>
+    <input type="text" id="respuesta" placeholder="Escribe tu respuesta..." />
+    <br />
+    <button onclick="verificarRespuesta()">Comprobar</button>
+    <div id="mensaje"></div>
+
+    <section style="margin-top: 40px;">
+      <h2>Minijuego: El Laberinto</h2>
+      <p id="estadoMinijuego">🔒 Resuelve el acertijo y espera a las 20:00 para desbloquear el minijuego.</p>
+      <button id="btnIniciar" class="bloqueado" onclick="iniciarLaberinto()">Iniciar Laberinto</button>
+      <div id="laberinto"></div>
+      <div id="mensajeJuego"></div>
+      <div id="controles">
+        <button onclick="mover('arriba')">↑</button><br/>
+        <button onclick="mover('izquierda')">←</button>
+        <button onclick="mover('abajo')">↓</button>
+        <button onclick="mover('derecha')">→</button>
+      </div>
+      <!-- Botón al siguiente día (fuera del laberinto/controles, pero dentro del container) -->
+<button id="btnDia6" class="bloqueado" style="display:none; margin-top:30px;" onclick="irDia6()">Comenzar Día 6</button>
+    </section>
+  </div>
+
+  <script>
+    const debug = true; // ⬅️ MODO PRUEBAS ACTIVADO
+    const respuestaCorrecta = 'silencio';
+    const horaDesbloqueo = 20;
+
+    const inputRespuesta = document.getElementById('respuesta');
+    const mensaje = document.getElementById('mensaje');
+    const estadoMinijuego = document.getElementById('estadoMinijuego');
+    const btnIniciar = document.getElementById('btnIniciar');
+    const laberintoDiv = document.getElementById('laberinto');
+    const mensajeJuego = document.getElementById('mensajeJuego');
+
+    function verificarRespuesta() {
+      const valor = inputRespuesta.value.trim().toLowerCase();
+      if (valor === respuestaCorrecta) {
+        mensaje.textContent = '✅ ¡Correcto! Minijuego disponible a las 20:00.';
+        mensaje.style.color = '#00ff00';
+        if  (!debug) {
+        localStorage.setItem('dia5_acertijo_resuelto', 'true');
+        }
+        inputRespuesta.disabled = true;
+        verificarMinijuego();
+      } else {
+        mensaje.textContent = '❌ Incorrecto. Intenta de nuevo.';
+        mensaje.style.color = '#ff4444';
+      }
+    }
+
+    function verificarMinijuego() {
+      const resuelto = debug || localStorage.getItem('dia5_acertijo_resuelto') === 'true';
+      const ahora = new Date();
+      const hora = ahora.getHours();
+
+      if (resuelto && (hora >= horaDesbloqueo || debug)) {
+        estadoMinijuego.textContent = '✅ ¡Minijuego desbloqueado! Puedes jugar ahora.';
+        btnIniciar.classList.remove('bloqueado');
+        btnIniciar.disabled = false;
+      } else if (resuelto) {
+        estadoMinijuego.textContent = '⏳ Espera a las 20:00 para desbloquear el minijuego.';
+      }
+    }
+
+    const mapa = [
+      "##########",
+      "#J   #   #",
+      "# ## # # #",
+      "#    # # #",
+      "####   # #",
+      "#    ### #",
+      "# ##     #",
+      "# ########",
+      "#        E",
+      "##########"
+    ];
+
+    let jugadorX = 0;
+    let jugadorY = 0;
+
+    function iniciarLaberinto() {
+      laberintoDiv.innerHTML = '';
+      for (let y = 0; y < mapa.length; y++) {
+        for (let x = 0; x < mapa[y].length; x++) {
+          const celda = document.createElement('div');
+          celda.classList.add('celda');
+          if (mapa[y][x] === ' ') celda.classList.add('camino');
+          if (mapa[y][x] === 'J') {
+            celda.classList.add('jugador');
+            jugadorX = x;
+            jugadorY = y;
+          }
+          if (mapa[y][x] === 'E') {
+            celda.classList.add('meta');
+          }
+          laberintoDiv.appendChild(celda);
+        }
+      }
+      laberintoDiv.style.display = 'grid';
+      document.getElementById('controles').style.display = 'block';
+    }
+
+    function mover(direccion) {
+      let nuevoX = jugadorX;
+      let nuevoY = jugadorY;
+
+      if (direccion === 'arriba') nuevoY--;
+      if (direccion === 'abajo') nuevoY++;
+      if (direccion === 'izquierda') nuevoX--;
+      if (direccion === 'derecha') nuevoX++;
+
+      if (mapa[nuevoY][nuevoX] === '#' || nuevoX < 0 || nuevoY < 0) return;
+
+      const indexAnterior = jugadorY * 10 + jugadorX;
+      const indexNuevo = nuevoY * 10 + nuevoX;
+
+      const celdas = document.querySelectorAll('.celda');
+      celdas[indexAnterior].classList.remove('jugador');
+      celdas[indexNuevo].classList.add('jugador');
+
+      jugadorX = nuevoX;
+      jugadorY = nuevoY;
+
+      if (mapa[nuevoY][nuevoX] === 'E') {
+        mensajeJuego.textContent = '🎉 ¡Has escapado del laberinto y desbloqueado el futuro!';
+       if (!debug) {
+        localStorage.setItem('dia5_laberinto_completado', 'true');
+       }
+        document.getElementById('controles').style.display = 'none';
+      }
+    }
+    //para que se pueda ir al dia 6 
+function verificarBotonDia6() {
+  const acertijo = localStorage.getItem('dia5_acertijo_resuelto') === 'true';
+  const laberinto = localStorage.getItem('dia5_laberinto_completado') === 'true';
+
+  const fechaHoy = new Date();
+  const dd = String(fechaHoy.getDate()).padStart(2, '0');
+  const mm = String(fechaHoy.getMonth() + 1).padStart(2, '0');
+  const yyyy = fechaHoy.getFullYear();
+  const hoy = `${dd}-${mm}-${yyyy}`;
+  const fechaDia6 = '09-08-2025';
+
+  const btn = document.getElementById('btnDia6');
+  if ((acertijo && laberinto && hoy === fechaDia6) || debug) {
+    btn.style.display = 'inline-block';
+    btn.classList.remove('bloqueado');
+    btn.disabled = false;
+  }
+}
+
+function irDia6() {
+  window.location.href = 'dia6.html';
+}
+
+    // Soporte para teclas en ordenador
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowUp') mover('arriba');
+      if (e.key === 'ArrowDown') mover('abajo');
+      if (e.key === 'ArrowLeft') mover('izquierda');
+      if (e.key === 'ArrowRight') mover('derecha');
+    });
+
+   window.onload = () => {
+  const acertijoResuelto = localStorage.getItem('dia5_acertijo_resuelto') === 'true';
+
+  if (acertijoResuelto) {
+    if (debug) {
+      inputRespuesta.value = respuestaCorrecta; // Solo se autocompleta en modo pruebas
+    }
+    inputRespuesta.disabled = true; // Bloquea el input si ya fue resuelto
+    mensaje.textContent = '✅ ¡Correcto! Minijuego disponible a las 20:00.';
+    mensaje.style.color = '#00ff00';
+  } else {
+    // Si no hay localStorage de que esté resuelto, asegúrate de dejarlo editable
+    inputRespuesta.disabled = false;
+    inputRespuesta.value = ''; // Limpia por si quedó algo residual
+  }
+
+  verificarMinijuego();
+  verificarBotonDia6();
+};
+  </script>
+</body>
+</html>

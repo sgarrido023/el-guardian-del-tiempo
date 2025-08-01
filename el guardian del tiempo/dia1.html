@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Día 1 - Misión Completa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0B1D2A, #1A2B3D);
+      font-family: 'Orbitron', monospace;
+      color: #EAC674;
+      min-height: 100vh;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+    .btn-volver {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 1.1rem;
+      color: #00B4D8;
+      text-decoration: none;
+      padding: 10px 15px;
+      border: 2px solid #00B4D8;
+      border-radius: 10px;
+      background-color: transparent;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+    .btn-volver:hover {
+      background-color: rgba(0, 180, 216, 0.1);
+      box-shadow: 0 0 10px #00B4D8;
+    }
+    .container {
+      max-width: 720px;
+      margin: 80px auto 40px;
+      background: rgba(11, 29, 42, 0.85);
+      border: 2px solid #00B4D8;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 20px #00B4D8cc;
+    }
+    h1, h2 {
+      margin-bottom: 20px;
+      color: #F9A03F;
+      text-shadow: 0 0 10px #F9A03Fcc;
+    }
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #EAC674;
+      margin-bottom: 15px;
+    }
+    .img-ilustracion {
+  margin: 25px auto;
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #00B4D8aa;
+  display: block;
+}
+    .acertijo {
+      margin-top: 20px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1rem;
+      width: 80%;
+      max-width: 300px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+      text-align: center;
+    }
+    button {
+      margin-top: 15px;
+      padding: 15px 30px;
+      font-size: 1rem;
+      font-family: 'Orbitron', monospace;
+      border-radius: 10px;
+      border: none;
+      background-color: #F9A03F;
+      color: #0B1D2A;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #F9A03Fcc;
+      transition: 0.3s ease;
+    }
+    button:hover:not(.bloqueado) {
+      background-color: #FFD280;
+      box-shadow: 0 0 15px #FFD280;
+    }
+    .mensaje {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .minijuego {
+      margin-top: 40px;
+      padding: 20px;
+      border-top: 1px solid #00B4D8;
+    }
+    #jugarBtn {
+      margin-top: 10px;
+      width: 100%;
+      max-width: 200px;
+      font-size: 1.2rem;
+    }
+    .bloqueado {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+    #tablero {
+      margin: 30px auto 0;
+      width: 360px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+      justify-content: center;
+    }
+    .carta {
+      width: 80px;
+      height: 80px;
+      background-color: #1A2B3D;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.8rem;
+      cursor: pointer;
+      color: transparent;
+      user-select: none;
+      box-shadow: 0 0 8px #00B4D8aa;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .carta.volteada {
+      background-color: #00B4D8;
+      color: #0B1D2A;
+      cursor: default;
+      box-shadow: 0 0 12px #00B4D8;
+    }
+    .carta.acertada {
+      background-color: #00A0B8;
+      color: #0B1D2A;
+      cursor: default;
+      box-shadow: 0 0 20px #00B4D8;
+    }
+    #mensajeFinal {
+      margin-top: 25px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #00B4D8;
+    }
+    @media (max-width: 600px) {
+  input[type="text"] {
+    width: 90%;
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+
+  button,
+  #btnComprobar,
+  #jugarBtn,
+  #btnDia2 {
+    padding: 16px 24px;
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: none;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  .btn-volver {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    top: 15px;
+    left: 15px;
+  }
+}
+
+    
+  </style>
+</head>
+<body>
+  <a href="instrucciones.html" class="btn-volver">← Volver</a>
+  <div class="container">
+    <h1>Día 1 - El Despertar del Tiempo</h1>
+<p>
+    Todo comenzó con un parpadeo. Un zumbido extraño, como si el aire se desgarrara en silencio. Te despertaste con una sensación que no podías explicar: algo había cambiado.
+</p>
+<p>
+    En tu dispositivo apareció un mensaje… de ella. La Viajera del Tiempo. Dice que ha quedado atrapada en otra línea temporal. Y tú, por alguna razón, eres la única persona que puede ayudarla.
+</p>
+<p>
+    El Guardián del Tiempo ha robado los 7 días que os separan. Pero no es una simple travesura: es una advertencia. Si no logras resolver los acertijos, el tiempo podría colapsar para siempre.
+</p>
+<p>
+    Comienza tu travesía. El primer día será una prueba de voluntad. Pero no estás solo. Ella te guiará. Confía en tu intuición… y en tu mente.
+</p>
+
+<img src="imagenes/imagen dia 1.png" alt="Ilustración Día 1" class="img-ilustracion">
+
+    <!-- Acertijo -->
+    <section class="acertijo">
+      <h2>Acertijo de la Mañana</h2>
+      <p>“Cuanto más le quitas, más grande se vuelve. ¿Qué es?”</p>
+      <input type="text" id="respuesta" placeholder="Escribe tu respuesta..." />
+      <br />
+      <button id="btnComprobar" onclick="verificarRespuesta()">Comprobar</button>
+      <div class="mensaje" id="mensaje"></div>
+    </section>
+
+    <!-- Minijuego -->
+    <section class="minijuego">
+      <h2>Minijuego de la Tarde</h2>
+      <p id="estadoMinijuego">🔒 Desbloqueado a las 20:00 solo si has resuelto el acertijo.</p>
+      <button id="jugarBtn" class="bloqueado" onclick="iniciarMemoria()">Jugar</button>
+      <div id="tablero" style="display:none;"></div>
+      <div id="mensajeFinal"></div>
+    </section>
+
+    <button id="btnDia2" class="bloqueado" style="margin-top: 30px; width: 100%; max-width: 250px; font-size: 1.2rem; display: none;" onclick="irDia2()">
+      Comenzar Día 2
+    </button>
+  </div>
+
+  <script>
+    const debug = true; // ⬅️ MODO PRUEBAS ACTIVADO
+
+    if (debug) {
+      localStorage.clear();
+      localStorage.setItem('dia1_acertijo_resuelto', 'true');
+      localStorage.setItem('dia1_minijuego_completado', 'true');
+    }
+
+    function verificarRespuesta() {
+      const input = document.getElementById('respuesta').value.trim().toLowerCase();
+      const mensaje = document.getElementById('mensaje');
+      const btnComprobar = document.getElementById('btnComprobar');
+      if (input === 'agujero') {
+        mensaje.textContent = '✅ ¡Correcto! Has desbloqueado el minijuego para las 20:00.';
+        mensaje.style.color = '#00ff00';
+        localStorage.setItem('dia1_acertijo_resuelto', 'true');
+        document.getElementById('respuesta').disabled = true;
+        btnComprobar.disabled = true;
+        verificarMinijuego();
+      } else {
+        mensaje.textContent = '❌ Incorrecto. Inténtalo de nuevo.';
+        mensaje.style.color = '#ff4444';
+      }
+    }
+
+    function verificarMinijuego() {
+      const acertado = localStorage.getItem('dia1_acertijo_resuelto') === 'true';
+      const hora = new Date().getHours();
+      const boton = document.getElementById('jugarBtn');
+      const estado = document.getElementById('estadoMinijuego');
+
+      if (acertado && (hora >= 20 || debug)) {
+        boton.classList.remove('bloqueado');
+        boton.disabled = false;
+        estado.textContent = '✅ ¡Minijuego desbloqueado! Puedes jugar ahora.';
+      } else if (acertado) {
+        estado.textContent = '⏳ Espera a las 20:00 para desbloquear el minijuego.';
+        boton.classList.add('bloqueado');
+        boton.disabled = true;
+      } else {
+        estado.textContent = '🔒 Resuelve el acertijo para desbloquear el minijuego.';
+        boton.classList.add('bloqueado');
+        boton.disabled = true;
+      }
+    }
+
+    const cartasEmoji = ['🐯','🐼','🤎','❤️','🤟🏼','💍','💧','🔥'];
+    let cartas = [], primeraCarta = null, segundaCarta = null, bloqueado = false, aciertos = 0;
+
+    function iniciarMemoria() {
+      const tablero = document.getElementById('tablero');
+      const mensajeFinal = document.getElementById('mensajeFinal');
+      tablero.style.display = 'grid';
+      mensajeFinal.textContent = '';
+      document.getElementById('jugarBtn').style.display = 'none';
+
+      cartas = mezclarArray(cartasEmoji.concat(cartasEmoji));
+      tablero.innerHTML = '';
+
+      cartas.forEach(valor => {
+        const carta = document.createElement('div');
+        carta.classList.add('carta');
+        carta.dataset.valor = valor;
+        carta.textContent = '?';
+        carta.addEventListener('click', manejarClick);
+        tablero.appendChild(carta);
+      });
+
+      primeraCarta = null;
+      segundaCarta = null;
+      bloqueado = false;
+      aciertos = 0;
+    }
+
+    function manejarClick(e) {
+      if (bloqueado) return;
+      const carta = e.target;
+      if (carta === primeraCarta || carta.classList.contains('acertada')) return;
+
+      mostrarCarta(carta);
+
+      if (!primeraCarta) {
+        primeraCarta = carta;
+        return;
+      }
+
+      segundaCarta = carta;
+      bloqueado = true;
+
+      if (primeraCarta.dataset.valor === segundaCarta.dataset.valor) {
+        primeraCarta.classList.add('acertada');
+        segundaCarta.classList.add('acertada');
+        aciertos++;
+        resetearTurno();
+        if (aciertos === cartasEmoji.length) ganarJuego();
+      } else {
+        setTimeout(() => {
+          ocultarCarta(primeraCarta);
+          ocultarCarta(segundaCarta);
+          resetearTurno();
+        }, 1000);
+      }
+    }
+
+    function mostrarCarta(carta) {
+      carta.textContent = carta.dataset.valor;
+      carta.classList.add('volteada');
+      carta.style.color = '#003300';
+      carta.style.cursor = 'default';
+    }
+
+    function ocultarCarta(carta) {
+      carta.textContent = '?';
+      carta.classList.remove('volteada');
+      carta.style.color = 'transparent';
+      carta.style.cursor = 'pointer';
+    }
+
+    function resetearTurno() {
+      primeraCarta = null;
+      segundaCarta = null;
+      bloqueado = false;
+    }
+
+    function ganarJuego() {
+      const mensajeFinal = document.getElementById('mensajeFinal');
+      mensajeFinal.textContent = ' ¡Felicidades! Has completado la misión del día 1.🎉';
+      localStorage.setItem('dia1_minijuego_completado', 'true');
+      verificarBotonDia2();
+    }
+
+    function irDia2() {
+      window.location.href = 'dia2.html';
+    }
+
+    function verificarBotonDia2() {
+      const minijuegoCompletado = localStorage.getItem('dia1_minijuego_completado') === 'true';
+      const btnDia2 = document.getElementById('btnDia2');
+
+      const fechaHoy = new Date();
+      const hoy = `${String(fechaHoy.getDate()).padStart(2, '0')}-${String(fechaHoy.getMonth() + 1).padStart(2, '0')}-${fechaHoy.getFullYear()}`;
+      const fechaDia2 = '05-08-2025';
+
+      if ((minijuegoCompletado && hoy === fechaDia2) || debug) {
+        btnDia2.style.display = 'inline-block';
+        btnDia2.classList.remove('bloqueado');
+        btnDia2.disabled = false;
+      } else {
+        btnDia2.style.display = 'none';
+      }
+    }
+
+    function mezclarArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    window.onload = function () {
+      if (localStorage.getItem('dia1_acertijo_resuelto') === 'true' && !debug) {
+        document.getElementById('respuesta').value = 'agujero';
+        document.getElementById('respuesta').disabled = true;
+        document.getElementById('btnComprobar').disabled = true;
+        document.getElementById('mensaje').textContent = '✅ ¡Correcto! Has desbloqueado el minijuego para las 20:00.';
+        document.getElementById('mensaje').style.color = '#00ff00';
+      }
+      verificarMinijuego();
+      verificarBotonDia2();
+    };
+  </script>
+</body>
+</html>

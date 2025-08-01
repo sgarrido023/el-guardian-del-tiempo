@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Día 4 - El Guardián del Tiempo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0B1D2A, #1A2B3D);
+      font-family: 'Orbitron', monospace;
+      color: #EAC674;
+      min-height: 100vh;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+    .btn-volver {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 1.1rem;
+      color: #00B4D8;
+      text-decoration: none;
+      padding: 10px 15px;
+      border: 2px solid #00B4D8;
+      border-radius: 10px;
+      background-color: transparent;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+    .btn-volver:hover {
+      background-color: rgba(0, 180, 216, 0.1);
+      box-shadow: 0 0 10px #00B4D8;
+    }
+    .container {
+      max-width: 750px;
+      margin: 80px auto 40px;
+      background: rgba(11, 29, 42, 0.85);
+      border: 2px solid #00B4D8;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 20px #00B4D8cc;
+    }
+    h1, h2 {
+      margin-bottom: 20px;
+      color: #F9A03F;
+      text-shadow: 0 0 10px #F9A03Fcc;
+    }
+    p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #EAC674;
+    margin-bottom: 15px;
+  }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1rem;
+      width: 80%;
+      max-width: 300px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+      text-align: center;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 25px;
+      font-size: 1rem;
+      font-family: 'Orbitron', monospace;
+      border-radius: 10px;
+      border: none;
+      background-color: #F9A03F;
+      color: #0B1D2A;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #F9A03Fcc;
+      transition: 0.3s ease;
+    }
+    button:hover:not(.bloqueado) {
+      background-color: #FFD280;
+      box-shadow: 0 0 15px #FFD280;
+    }
+    .bloqueado {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+    #mensaje, #mensajeSecuencia {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .color-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      margin: 10px;
+      display: inline-block;
+      cursor: pointer;
+      opacity: 0.8;
+    }
+    .color-btn:hover {
+      opacity: 1;
+    }
+    #secuencia {
+      margin-top: 20px;
+    }
+    #btnDia5 {
+      margin-top: 30px;
+      display: none;
+    }
+    .glitch {
+      font-size: 1.4rem;
+      margin-top: 40px;
+      color: #F9A03F;
+      text-shadow: 1px 0 red, -1px 0 blue;
+      animation: glitch 0.2s infinite;
+      user-select: none;
+    }
+    @keyframes glitch {
+      0% { transform: translate(0px, 0px); }
+      20% { transform: translate(-1px, 1px); }
+      40% { transform: translate(1px, -1px); }
+      60% { transform: translate(-1px, -1px); }
+      80% { transform: translate(1px, 1px); }
+      100% { transform: translate(0px, 0px); }
+    }
+     .imagen-dia {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #00B4D8aa;
+}
+
+  </style>
+</head>
+<body>
+  <a href="instrucciones.html" class="btn-volver">← Volver</a>
+  <div class="container">
+    <h1>Día 4 — El Guardián del Tiempo ⏳🛡️</h1>
+    <p>
+      Ah… finalmente estás aquí.<br>
+      -Una voz grave y desconocida resuena en tu mente-<br><br>
+      Soy el Guardián del Tiempo, el verdadero protector de esta línea temporal. La que tú llamas ‘Viajera’ está jugando con fuerzas que no comprende.<br><br>
+      Ella cree que puede cambiar lo inevitable… pero tú, insignificante humano, eres solo una pieza en su juego.<br><br>
+      Has estado resolviendo sus acertijos, deshaciendo su caos, pero cada paso que das hacia el ‘orden’ es una amenaza para el equilibrio que yo juré proteger.<br><br>
+      Hoy, te enfrentarás a un nuevo desafío. No por ella, sino por mí. Veremos si eres digno de seguir adelante… o si quedarás atrapado para siempre en este bucle.
+    </p>
+
+<img src="imagenes/imagen dia 4.png" alt="Ilustración Día 4 - El Guardián del Tiempo ⏳🛡️" class="imagen-dia" />
+
+    <!-- Acertijo -->
+    <section class="acertijo">
+      <h2>Acertijo del día</h2>
+      <p>“Entre todas las letras, soy la primera en todo, pero la última en nada. ¿Quién soy?”</p>
+      <input type="text" id="respuesta" placeholder="Escribe tu respuesta..." />
+      <br />
+      <button onclick="verificarRespuesta()">Comprobar</button>
+      <div id="mensaje"></div>
+    </section>
+
+    <!-- Minijuego -->
+    <section id="minijuego" style="margin-top: 40px;">
+      <h2>Minijuego de Memoria Visual</h2>
+      <p id="estadoMinijuego">🔒 Resuelve el acertijo y espera a las 20:00 para desbloquear el minijuego.</p>
+      <button id="btnIniciar" class="bloqueado" onclick="iniciarMinijuego()">Iniciar minijuego</button>
+
+      <div id="secuencia" style="display: none;">
+        <div id="colores"></div>
+        <div id="mensajeSecuencia"></div>
+        <div id="opciones" style="margin-top: 15px;"></div>
+      </div>
+    </section>
+
+    <div class="glitch" id="mensajeFinal" style="display:none;">
+      📡 <strong>Mensaje interrumpido</strong> — transcripción parcial:<br>
+      > “...no confíes en él… el Guardián no siempre fue así...”<br>
+      > “...hubo un fallo en la línea alfa… él se quedó atrapado, cambió…”<br>
+      > “No lo destruyas. Libéralo.”<br>
+      Tu viajera del tiempo 💫
+    </div>
+
+    <button id="btnDia5" onclick="window.location.href='dia5.html'">Comenzar Día 5</button>
+    <button id="btnReset" style="display:none; margin-top:20px;" onclick="resetearProgreso()">🔄 Resetear progreso (modo pruebas)</button>
+  </div>
+
+  <script>
+    const debug = true; // ⬅️ Activa modo pruebas
+    const respuestaCorrecta = 'a';
+    const horaDesbloqueo = 20;
+    const coloresDisponibles = ['red', 'blue', 'green', 'yellow'];
+    let secuencia = [];
+    let intentoActual = [];
+    let intentos = 3;
+
+    const input = document.getElementById('respuesta');
+    const mensaje = document.getElementById('mensaje');
+    const estadoMinijuego = document.getElementById('estadoMinijuego');
+    const btnIniciar = document.getElementById('btnIniciar');
+    const secuenciaDiv = document.getElementById('secuencia');
+    const coloresDiv = document.getElementById('colores');
+    const opcionesDiv = document.getElementById('opciones');
+    const mensajeSecuencia = document.getElementById('mensajeSecuencia');
+    const btnDia5 = document.getElementById('btnDia5');
+    const mensajeFinal = document.getElementById('mensajeFinal');
+    const btnReset = document.getElementById('btnReset');
+
+    function verificarRespuesta() {
+      const valor = input.value.trim().toLowerCase();
+      if (valor === respuestaCorrecta) {
+        localStorage.setItem('dia4_acertijo_resuelto', 'true');
+        mensaje.textContent = '✅ Correcto. El minijuego estará disponible a las 20:00.';
+        mensaje.style.color = '#00ff00';
+        input.disabled = true;
+        verificarMinijuego();
+      } else {
+        mensaje.textContent = '❌ Incorrecto. Intenta de nuevo.';
+        mensaje.style.color = '#ff4444';
+      }
+    }
+
+    function verificarMinijuego() {
+      const resuelto = localStorage.getItem('dia4_acertijo_resuelto') === 'true';
+      const ahora = new Date();
+      const hora = ahora.getHours();
+      if (resuelto && (hora >= horaDesbloqueo || debug)) {
+        estadoMinijuego.textContent = '✅ ¡Minijuego desbloqueado! Utiliza tu memoria para recodar la secuencia de colores';
+        btnIniciar.classList.remove('bloqueado');
+        btnIniciar.disabled = false;
+      } else if (resuelto) {
+        estadoMinijuego.textContent = '⏳ Espera a las 20:00 para desbloquear el minijuego.';
+      }
+    }
+
+    function iniciarMinijuego() {
+      secuencia = [];
+      for (let i = 0; i < 4; i++) {
+        const color = coloresDisponibles[Math.floor(Math.random() * coloresDisponibles.length)];
+        secuencia.push(color);
+      }
+      intentos = 3;
+      mostrarSecuencia();
+    }
+
+    function mostrarSecuencia() {
+      intentoActual = [];
+      coloresDiv.innerHTML = '';
+      opcionesDiv.innerHTML = '';
+      mensajeSecuencia.textContent = '';
+      secuencia.forEach(color => {
+        const el = document.createElement('div');
+        el.className = 'color-btn';
+        el.style.backgroundColor = color;
+        coloresDiv.appendChild(el);
+      });
+      secuenciaDiv.style.display = 'block';
+      setTimeout(() => {
+        coloresDiv.innerHTML = '';
+        mostrarOpciones();
+      }, 2000);
+    }
+
+    function mostrarOpciones() {
+      coloresDisponibles.forEach(color => {
+        const btn = document.createElement('div');
+        btn.className = 'color-btn';
+        btn.style.backgroundColor = color;
+        btn.onclick = () => {
+          intentoActual.push(color);
+          if (intentoActual.length === 4) {
+            comprobarSecuencia();
+          }
+        };
+        opcionesDiv.appendChild(btn);
+      });
+    }
+
+    function comprobarSecuencia() {
+      if (JSON.stringify(intentoActual) === JSON.stringify(secuencia)) {
+        mensajeSecuencia.textContent = '✅ ¡Secuencia correcta!';
+        localStorage.setItem('dia4_minijuego_completado', 'true');
+        mensajeFinal.style.display = 'block';
+        btnDia5.style.display = 'inline-block';
+      } else {
+        intentos--;
+        if (intentos > 0) {
+          mensajeSecuencia.textContent = `❌ Incorrecto. Te quedan ${intentos} intento(s). Observa la secuencia nuevamente.`;
+          setTimeout(mostrarSecuencia, 1500);
+        } else {
+          mensajeSecuencia.textContent = '💥 Has perdido todos los intentos.';
+          btnIniciar.disabled = true;
+        }
+      }
+    }
+
+    function resetearProgreso() {
+      localStorage.removeItem('dia4_acertijo_resuelto');
+      localStorage.removeItem('dia4_minijuego_completado');
+      location.reload();
+    }
+
+    window.onload = () => {
+      if (debug) btnReset.style.display = 'inline-block';
+
+      if (localStorage.getItem('dia4_acertijo_resuelto') === 'true') {
+        input.value = respuestaCorrecta;
+        input.disabled = true;
+        mensaje.textContent = '✅ Correcto. El minijuego estará disponible a las 20:00.';
+        mensaje.style.color = '#00ff00';
+      }
+
+      if (localStorage.getItem('dia4_minijuego_completado') === 'true') {
+        mensajeFinal.style.display = 'block';
+        btnDia5.style.display = 'inline-block';
+      } else {
+        mensajeFinal.style.display = 'none';
+      }
+
+      verificarMinijuego();
+    };
+  </script>
+</body>
+</html>

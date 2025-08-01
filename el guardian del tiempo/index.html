@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Fragmentos del Destino - Portada</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #0B1D2A;
+      font-family: 'Orbitron', monospace;
+      color: #EAC674;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .portada-img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 0 30px #00B4D8aa;
+      margin-bottom: 40px;
+    }
+
+    .start-btn {
+      padding: 15px 25px;
+      font-size: 1.1rem;
+      font-family: 'Orbitron', monospace;
+      border-radius: 500px;
+      border: none;
+      background-color: #F9A03F;
+      color: #0B1D2A;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 12px #F9A03Fcc;
+      transition: 0.3s ease;
+    }
+
+    .start-btn:hover {
+      background-color: #FFD280;
+      box-shadow: 0 0 18px #FFD280cc;
+    }
+
+    @media screen and (max-width: 480px) {
+      .start-btn {
+        font-size: 1rem;
+        padding: 12px 20px;
+      }
+
+      .portada-img {
+        max-width: 90%;
+        margin-bottom: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="imagenes/portada juego.png" alt="Fragmentos del Destino - Portada" class="portada-img">
+
+  <a href="inicio.html">
+    <button class="start-btn">¿Listo para comenzar la aventura?</button>
+  </a>
+</body>
+</html>
