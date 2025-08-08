@@ -140,7 +140,7 @@
     <br />
     <button onclick="verificarRespuesta()">Comprobar</button>
     <div class="mensaje" id="mensaje"></div>
-    <p id="estadoMinijuego">🔒 El minijuego estará disponible a las 20:00.</p>
+    <p id="estadoMinijuego">🔒 El minijuego estará disponible a las 17:00.</p>
 
     <div id="escapeRoom">
       <h2>🔐 Escape Room — Caja Temporal</h2>
@@ -171,7 +171,7 @@
       const mensaje = document.getElementById("mensaje");
 
       if (valor === respuestaCorrecta) {
-        mensaje.textContent = "✅ ¡Correcto! El minijuego estará disponible a las 20:00.";
+        mensaje.textContent = "✅ ¡Correcto! El minijuego estará disponible a las 17:00.";
         mensaje.style.color = "#00ff00";
         localStorage.setItem("dia6_acertijo_resuelto", "true");
         document.getElementById("respuesta").disabled = true;
