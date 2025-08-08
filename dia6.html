@@ -189,12 +189,12 @@
       const acertijo = localStorage.getItem("dia6_acertijo_resuelto") === "true";
       const estado = document.getElementById("estadoMinijuego");
 
-      if ((acertijo && hoy === fechaDia6 && hora >= 20) || debug) {
+      if ((acertijo && hoy === fechaDia6 && hora >= 17) || debug) {
         document.getElementById("escapeRoom").style.display = "block";
         estado.textContent = "✅ ¡Minijuego desbloqueado! Puedes intentar abrir la caja.";
         estado.style.color = "#00ff00";
-      } else if (acertijo && hoy === fechaDia6 && hora < 20) {
-        estado.textContent = "⏳ Espera a las 20:00 para desbloquear el minijuego.";
+      } else if (acertijo && hoy === fechaDia6 && hora < 17) {
+        estado.textContent = "⏳ Espera a las 17:00 para desbloquear el minijuego.";
         estado.style.color = "#ffff66";
       }
     }
